@@ -1,6 +1,6 @@
 # External MangoPi R3C buildroot tree for Speedsaver #
 
-This external tree contains the support for Widora MangoPi R3C revision only. This is tweaked from what the vendor supplied to allow for the Speedsaver use case and based on the original work [here](https://github.com/Speedsaver/buildroot-mangopi).
+This external tree contains the support for Widora MangoPi R3C revision only. This is tweaked from what the vendor supplied to allow for the Speedsaver use case and based on the original work [here](https://github.com/Speedsaver/buildroot-mangopi-r3c).
 
 ## Required tools ##
 
