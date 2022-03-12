@@ -5,6 +5,7 @@ ConditionPathExists=!/var/lib/alsa/asound.state
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/amixer sset "Headphone" 100%
+ExecStart=/usr/bin/amixer sset "DAC" 100%
 ExecStart=/sbin/alsactl store
 
 [Install]
