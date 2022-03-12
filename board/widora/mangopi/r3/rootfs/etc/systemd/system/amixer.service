@@ -1,0 +1,11 @@
+[Unit]
+Description=set sound card settings
+ConditionPathExists=!/var/lib/alsa/asound.state
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/amixer sset "Headphone" 100%
+ExecStart=/sbin/alsactl store
+
+[Install]
+WantedBy=sound.target

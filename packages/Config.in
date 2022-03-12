@@ -1,0 +1,11 @@
+menu "Target packages"
+
+menu "Userspace utilities"
+
+source "$BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH/packages/arduipi-oled/Config.in"
+source "$BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH/packages/curtail/Config.in"
+source "$BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH/packages/navit/Config.in"
+
+endmenu
+
+endmenu

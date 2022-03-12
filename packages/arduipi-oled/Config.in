@@ -1,0 +1,7 @@
+config BR2_PACKAGE_ARDUIPI_OLED
+	bool "ArduiPi_OLED"
+	depends on BR2_PACKAGE_I2C_TOOLS
+	help
+	  Arduipi_OLED library from Hallard.
+
+	  https://github.com/hallard/ArduiPi_OLED

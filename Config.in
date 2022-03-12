@@ -1,0 +1,3 @@
+# packages
+
+source "$BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH/packages/Config.in"

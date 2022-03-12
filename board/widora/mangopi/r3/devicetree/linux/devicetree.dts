@@ -8,9 +8,14 @@
 	compatible = "allwinner,suniv-f1c200s",
 			 "allwinner,suniv-f1c100s";
 
+	aliases {
+		serial0 = &uart1;
+	};
+
 	chosen {
 		#address-cells = <1>;
 		#size-cells = <1>;
+		stdout-path = "serial0:115200n8";
 		ranges;
 		//for NAND or Nor
 		//bootargs = "console=ttyS0,115200 rootwait init=/preinit root=/dev/mtdblock2 rootfstype=squashfs overlayfsdev=/dev/mtdblock3"; 
@@ -47,44 +52,6 @@
 
 &spi0 {
 	status = "okay";
-
-	spi-nor@0 {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		compatible = "winbond,w25q128", "jedec,spi-nor";
-		reg = <0>;
-		spi-max-frequency = <50000000>;
-		status = "disabled";
-
-		partitions {
-			compatible = "fixed-partitions";
-			#address-cells = <1>;
-			#size-cells = <1>;
-
-			partition@0 {
-				label = "u-boot";
-				reg = <0x000000 0x70000>;
-				read-only;
-			};
-
-			partition@1 {
-				label = "kernel";
-				reg = <0x70000 0x590000>;
-				read-only;
-			};
-
-			partition@2 {
-				label = "rom";
-				reg = <0x600000 0x700000>;
-				read-only;
-			};
-
-			partition@3 {
-				label = "overlay";
-				reg = <0xd00000 0x300000>;
-			};
-		};
-	};
 
 	spi-nand@0 {
 		#address-cells = <1>;
@@ -128,15 +95,16 @@
 	};
 };
 
+&uart0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart0_pe_pins>;
+	status = "okay";
+};
+
 &uart1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart1_pa_pins>;
 	status = "okay";
-};
-
-&mmc0 {
-	status = "okay";
-	broken-cd;
 };
 
 &otg_sram {
@@ -149,10 +117,6 @@
 };
 
 &usbphy {
-	status = "okay";
-};
-
-&cedar_ve {
 	status = "okay";
 };
 
@@ -204,85 +168,4 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c0_pd_pins>;
 	status = "okay";
-
-	rtp@48 {
-		compatible = "ti,tsc2007";
-		reg = <0x48>;
-		interrupt-parent = <&pio>;
-		interrupts = <4 12 IRQ_TYPE_EDGE_FALLING>;
-		gpios = <&pio 4 12 GPIO_ACTIVE_LOW>;
-		pendown-gpio = <&pio 4 12 GPIO_ACTIVE_LOW>;
-		ti,x-plate-ohms = <660>;
-		wakeup-source;
-		status = "disabled";
-	};
-
-	ctp@5d {
-		compatible = "goodix,gt911";
-		reg = <0x5d>;
-		interrupt-parent = <&pio>;
-		interrupts = <4 12 IRQ_TYPE_EDGE_FALLING>; // PE12
-		irq-gpios = <&pio 4 12 GPIO_ACTIVE_HIGH>; // PE12
-		reset-gpios = <&pio 0 0 GPIO_ACTIVE_HIGH>; // PA0
-	};
-
-	ov2640: camera@30 {
-		compatible = "ovti,ov2640";
-		reg = <0x30>;
-		pinctrl-0 = <&clk_out_pins>;
-		pinctrl-names = "default";
-		clocks = <&clk_out>;
-		clock-names = "xvclk";
-		assigned-clocks = <&clk_out>;
-		assigned-clock-rates = <24000000>;
-
-		port {
-			ov2640_ep: endpoint {
-				remote-endpoint = <&csi0_ep>;
-				bus-width = <8>;
-				hsync-active = <0>;
-				vsync-active = <0>;
-				pclk-sample = <1>;
-			};
-		};
-	};
-
-	ov5640: camera@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-		pinctrl-0 = <&clk_out_pins>;
-		pinctrl-names = "default";
-		clocks = <&clk_out>;
-		clock-names = "xclk";
-		assigned-clocks = <&clk_out>;
-		assigned-clock-rates = <24000000>;
-		status = "disabled";
-
-		port {
-			ov5640_ep: endpoint {
-				remote-endpoint = <&csi0_ep>;
-				bus-width = <8>;
-				hsync-active = <0>;
-				vsync-active = <0>;
-				pclk-sample = <1>;
-			};
-		};
-	};
-};
-
-&csi0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&csi0_pins>;
-	packed-format;
-	status = "okay";
-
-	port {
-		csi0_ep: endpoint {
-			remote-endpoint = <&ov2640_ep>;
-			bus-width = <8>;
-			hsync-active = <0>;
-			vsync-active = <0>;
-			pclk-sample = <1>;
-		};
-	};
 };

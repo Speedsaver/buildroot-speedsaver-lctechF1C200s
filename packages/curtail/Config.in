@@ -1,0 +1,7 @@
+config BR2_PACKAGE_CURTAIL
+	bool "curtail"
+	help
+	  Curtail is a utility program that reads
+	  stdin and writes to a file bound by size.
+
+	  https://github.com/Comcast/Infinite-File-Curtailer
