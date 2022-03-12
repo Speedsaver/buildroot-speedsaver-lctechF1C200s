@@ -1,0 +1,28 @@
+From 18a70e5ed853e2a91949a19caf17cac3af28815f Mon Sep 17 00:00:00 2001
+From: Adam Duskett <Aduskett@gmail.com>
+Date: Mon, 2 Nov 2020 09:08:40 -0800
+Subject: [PATCH] package/alsa-utils: set lock directory for systemd
+
+Signed-off-by: Adam Duskett <Aduskett@gmail.com>
+---
+ package/alsa-utils/alsa-utils.mk | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/package/alsa-utils/alsa-utils.mk b/package/alsa-utils/alsa-utils.mk
+index 4776a17..c177b6b 100644
+--- a/package/alsa-utils/alsa-utils.mk
++++ b/package/alsa-utils/alsa-utils.mk
+@@ -80,7 +80,10 @@ endef
+ 
+ ifeq ($(BR2_PACKAGE_ALSA_UTILS_ALSACTL)$(BR2_INIT_SYSTEMD),yy)
+ ALSA_UTILS_DEPENDENCIES += systemd
+-ALSA_UTILS_CONF_OPTS += --with-systemdsystemunitdir=/usr/lib/systemd/system
++ALSA_UTILS_CONF_OPTS += \
++	--with-systemdsystemunitdir=/usr/lib/systemd/system \
++	--with-alsactl-lock-dir=/tmp
++
+ define ALSA_UTILS_INSTALL_INIT_SYSTEMD
+ 	$(INSTALL) -D -m 0644 $(@D)/alsactl/alsa-restore.service \
+ 		$(TARGET_DIR)/usr/lib/systemd/system/alsa-restore.service
+-- 
+2.28.0
