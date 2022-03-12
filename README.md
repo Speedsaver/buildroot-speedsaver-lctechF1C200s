@@ -39,7 +39,8 @@ sudo dfu-util -R -a rom -D images/rootfs.ubi
 ```
 
 The board should then reset itself and you should see it starting to boot.
-notes:
+
+Notes:
 * It is a good idea to connect putty or screen, or some serial program to the uart port at all times so you can quickly check on u-boot and on boot progress to ensure everything is going well.
 * If you do this on an already flashed board (i.e: a board which has already some data in the nand flash), you must do things a little differently.
 	* To enter FEL mode, press both reset and boot button at the same time. Then, release reset first, and then boot. Do not release them simultaneously.
