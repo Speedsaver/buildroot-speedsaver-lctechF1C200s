@@ -5,7 +5,7 @@ This external tree contains the support for Widora MangoPi R3C revision only. Th
 ## Required tools ##
 
 To use this, you will require the following tools:
-* sunxi-tools
+* sunxi-tools built from source (see below)
 * dfu-util
 
 ## How to build ##
@@ -13,11 +13,13 @@ To use this, you will require the following tools:
 This external tree will work with the latest buildroot version, which is 2022.02 at the time of this writing.
 
 Download buildroot, then git clone this external tree, cd to the buildroot top level directory, then type these commands:
-
 ```
 for p in /path/to/buildroot-speedsaver-mangopi/buildroot-patches/*.patch; do patch -p1 < $p; done
+
 make BR2_EXTERNAL=/path/to/buildroot-speedsaver-mangopi speedsaver_defconfig O=output/speedsaver
+
 cd output/speedsaver
+
 make
 ```
 
@@ -25,35 +27,50 @@ If you have a multi-cores machine, you can try passing -j to the second make inv
 
 ## Flashing ##
 
-Once the image has finished building, please ensure your board is in FEL mode before continuing. First, lets upload u-boot to the board's ram using sunxi-fel:
-
+To flash the image, you will need to clone [this branch](https://github.com/Icenowy/sunxi-tools/tree/f1c100s-spiflash) of sunxi-tools fork by Icenowy, which contains the support for f1c100s/f1c200s SoC and SPI flash support. Lets clone it in your home directory as am example:
 ```
+cd
+
+git clone https://github.com/Icenowy/sunxi-tools.git -b f1c100s-spiflash
+
+cd sunxi-tools
+
+make
+
+sudo make install
+```
+
+Once the image has finished building, please ensure your board is in FEL mode before continuing (see the list of notes below to learn how to enter FEL mode). First, lets move back to the output directory of buildroot and upload u-boot to the board's ram using sunxi-fel:
+```
+cd
+
+cd /path/to/buildroot/output/speedsaver
+
 sudo sunxi-fel -p uboot images/u-boot-sunxi-with-spl.bin
 ```
 
-Once this is done and you are back to your shell, you have 15 seconds before the board timeouts the DFU. Enter the following:
+Then, at the u-boot prompt in your serial terminal window (which should be =>), type the following to erase the spi-nand flash:
+```
+mtd erase spi-nand0
+```
 
+When this has completed and you are back at the u-boot prompt, type this to start the DFU mode. It will timeout after 15 seconds:
+```
+run dfu_nand
+```
+
+Back in your terminal from which you ran sunxi-fel from, run the following commands:
 ```
 sudo dfu-util -a u-boot -D images/u-boot-sunxi-with-nand-spl.bin
+
 sudo dfu-util -R -a rom -D images/rootfs.ubi
 ```
 
 The board should then reset itself and you should see it starting to boot.
 
 Notes:
-* It is a good idea to connect putty or screen, or some serial program to the uart port at all times so you can quickly check on u-boot and on boot progress to ensure everything is going well.
-* If you do this on an already flashed board (i.e: a board which has already some data in the nand flash), you must do things a little differently.
-	* To enter FEL mode, press both reset and boot button at the same time. Then, release reset first, and then boot. Do not release them simultaneously.
-	* Upload u-boot to the board's ram as usual.
-	* Let the first DFU time out, so that you are back at the u-boot prompt which should be =>.
-	* Type the following:
-	```
-	mtd erase spi-nand0 0x0 0x8000000
-	```
-	* When this is completed, type this to give you another 15 seconds  for DFU:
-	```
-	run dfu_nand
-	```
+
+* To enter FEL mode, press both reset and boot button at the same time. Then, release reset first, and then boot. Do not release them simultaneously (in my experience releasing reset then waiting for half a second to release boot works good).
 * You can start DFU again if you are not fast enough by typing this at the u-boot prompt:
 ```
 run dfu_nand
