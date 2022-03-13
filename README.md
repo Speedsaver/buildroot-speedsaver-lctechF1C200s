@@ -78,4 +78,4 @@ run dfu_nand
 
 ## First boot ##
 
-The first time your board boots, it will take a long while, but this is perfectly normal. Linux has to fix up the filesystem and prepare for boot at the same time. Subsequent reboots should be faster, but please do note that the 15 seconds timeout for DFU will happen at every boot for now.
+The first time your board boots, it will take a long while, but this is perfectly normal. Linux has to fix up the filesystem and prepare for boot at the same time. Subsequent reboots should be faster.
