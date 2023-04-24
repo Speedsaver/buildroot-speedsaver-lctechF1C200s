@@ -5,7 +5,7 @@
 ################################################################################
 
 NAVIT_VERSION = trunk
-NAVIT_SITE = git://github.com/navit-gps/navit
+NAVIT_SITE = https://github.com/navit-gps/navit
 NAVIT_LICENSE = GPL-2
 NAVIT_DEPENDENCIES = host-pkgconf
 NAVIT_MAKE = $(MAKE1)
@@ -27,7 +27,7 @@ endif
 
 ifeq ($(BR2_PACKAGE_NAVIT_SPEEDSAVER),y)
 NAVIT_VERSION = 81714d7ecdcc392f73c613f42d3acf0d02b5f7ad
-NAVIT_SITE = git://github.com/speedsaver/navit
+NAVIT_SITE = https://github.com/speedsaver/navit
 NAVIT_DEPENDENCIES += arduipi-oled libglib2
 NAVIT_CONF_OPTS += -Dspeech/cmdline=0 -Dmap/textfile=0 -Dgui/internal=0 -DUSE_NATIVE_LANGUAGE_SUPPORT=0
 endif
