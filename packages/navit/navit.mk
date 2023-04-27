@@ -14,7 +14,7 @@ ifeq ($(BR2_PACKAGE_NAVIT_SPEEDSAVER),y)
 NAVIT_VERSION = master
 NAVIT_SITE = https://github.com/Speedsaver/navit/archive/refs/heads
 NAVIT_SOURCE = master.tar.gz
-NAVIT_DEPENDENCIES += arduipi-oled libglib2
+NAVIT_DEPENDENCIES += arduipi-oled libglib2 gpsd
 endif
 
 $(eval $(meson-package))
