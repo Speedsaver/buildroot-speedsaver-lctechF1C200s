@@ -10,7 +10,7 @@ To use this, you will require the following tools:
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2023.02 at the time of this writing. Note tested working with kernel 5.4.99
+This external tree will work with the latest buildroot version, which is 2023.02.1 at the time of this writing. Note tested working with kernel 5.4.99
 
 Download buildroot, then git clone this external tree, cd to the buildroot top level directory, then type these commands:
 ```
