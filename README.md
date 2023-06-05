@@ -82,3 +82,29 @@ run dfu_nand
 ## First boot ##
 
 The first time your board boots, it will take a long while, but this is perfectly normal. Linux has to fix up the filesystem and prepare for boot at the same time. Subsequent reboots should be faster.
+
+## Flash SD card ##
+
+### Required tools ###
+
+To flash an sdcard, you can use [Imager](https://www.raspberrypi.com/software/) (recommended) or use the commandline instructions below.
+
+
+Plug in the sdcard into the sdcard reader and plug into host machine.
+
+Check device is mounted with
+```
+df -h
+```
+
+If it's not mounted, you can mount with
+```
+mount /dev/[sdcard_device] /mnt
+```
+
+Take note of the device the sdcard is mounted under.
+
+Flash the sdcard with 
+```
+sudo dd if=/path/to/buildroot/output/speedsaver/images/sysimage-sdcard.img of=/dev/[sdcard_device] bs=1m
+```
