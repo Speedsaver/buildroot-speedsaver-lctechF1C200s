@@ -10,3 +10,4 @@ SELFDIR=`dirname \`realpath ${0}\``
 
 ${SELFDIR}/mknanduboot.sh ${1}/${2} ${1}/u-boot-sunxi-with-nand-spl.bin
 support/scripts/genimage.sh ${1} -c "${BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH}/board/allwinner/suniv-f1c100s/genimage-nand.cfg"
+support/scripts/genimage.sh ${1} -c "${BR2_EXTERNAL_SPEEDSAVER_MANGOPI_PATH}/board/allwinner/suniv-f1c100s/genimage-sdcard.cfg"
