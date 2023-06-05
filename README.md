@@ -106,5 +106,5 @@ Take note of the device the sdcard is mounted under.
 
 Flash the sdcard with 
 ```
-sudo dd if=/path/to/buildroot/output/speedsaver/images/sysimage-sdcard.img of=/dev/[sdcard_device] bs=1m
+sudo dd if=/path/to/buildroot/output/speedsaver/images/sysimage-sdcard.img of=/dev/[sdcard_device] bs=1M
 ```
