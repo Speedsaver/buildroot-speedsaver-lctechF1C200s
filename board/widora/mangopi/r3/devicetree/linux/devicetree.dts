@@ -20,7 +20,7 @@
 		//for NAND or Nor
 		//bootargs = "console=ttyS0,115200 rootwait init=/preinit root=/dev/mtdblock2 rootfstype=squashfs overlayfsdev=/dev/mtdblock3"; 
 		//for sd-card
-		bootargs = "console=ttyS0,115200 earlyprintk rootwait init=/preinit root=/dev/mmcblk0p3";
+		bootargs = "console=ttyS1,115200n8 rootwait root=/dev/mmcblk0p3 rootfstype=ext4";
 		simplefb_lcd: framebuffer-lcd0 {
 			compatible = "allwinner,simple-framebuffer",
 				     "simple-framebuffer";
@@ -105,6 +105,11 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart1_pa_pins>;
 	status = "okay";
+};
+
+&mmc0 {
+	status = "okay";
+	broken-cd;
 };
 
 &otg_sram {
