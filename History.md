@@ -1,4 +1,16 @@
 
+2023-06-17 / 2023-06-17
+=======================
+
+  * Merge pull request #3 from AaronElijah/feature-add-sdcard-img
+  * fix: add FIT file configuration for building sd-card image file
+  * Merge pull request #2 from AaronElijah/feature-add-sdcard-img
+  * fix: edit kernel config to detect mmc partitions
+  * Update README.md
+  * Merge pull request #1 from AaronElijah/feature-add-sdcard-img
+  * feat: generate new sd card image on build
+  * Update README.md
+
 2023-05-03 / 2023-05-03
 =======================
 
