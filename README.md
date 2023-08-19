@@ -1,6 +1,6 @@
-# External MangoPi R3C buildroot tree for Speedsaver #
+# External Lctech Pi F1C200s buildroot tree for Speedsaver #
 
-This external tree contains the support for Widora MangoPi R3C revision only. This is tweaked from what the vendor supplied to allow for the Speedsaver use case and based on the original work [here](https://github.com/Speedsaver/buildroot-mangopi-r3c).
+This external tree contains the support for the Speedsaver use-case on the Lctech Pi F1C200s development board
 
 ## Required tools ##
 
@@ -10,7 +10,7 @@ To use this, you will require the following tools:
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2023.02.2 at the time of this writing. Note tested working with kernel 5.4.99
+This external tree will work with the latest buildroot version, which is 2023.02.3 at the time of this writing. Note tested working with kernel 5.4.254
 
 Download buildroot, then git clone this external tree, cd to the buildroot top level directory, then type these commands:
 ```
