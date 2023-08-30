@@ -8,32 +8,63 @@ Note if you are new to Buildroot, see prerequisites: https://buildroot.org/downl
 ```
 sudo apt install make gcc build-essential libncurses5-dev libssl-dev
 ```
-libncurses5-dev is in place of ncurses5
+Note libncurses5-dev is in place of ncurses5
 
 If you wish to flash the onboard spi NAND you will also require the following tools:
 * sunxi-tools built from source (see below)
 * dfu-util
 
-Otherwise, a sysimage-sdcard.img is available in the /images directory after building.
+If you only require an SD card image, a sysimage-sdcard.img file is created in the images directory after building.
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2023.02.3 at the time of this writing. Note tested working with kernel 5.4.254
+This external tree will work with the latest buildroot version, which is 2023.02.3 at the time of this writing. Note tested working with kernel 5.4.254. Open a terminal and run the following commands
 
-Download buildroot, then git clone this external tree, cd to the buildroot top level directory, then type these commands:
+```
+git clone https://github.com/Speedsaver/buildroot-speedsaver-lctechF1C200s.git
+```
+```
+wget https://buildroot.org/downloads/buildroot-2023.02.3.tar.gz
+```
+```
+tar -zxf buildroot-2023.02.3.tar.gz
+```
+```
+cd buildroot-2023.02.3
+```
 ```
 for p in /path/to/buildroot-speedsaver-mangopi/buildroot-patches/*.patch; do patch -p1 < $p; done
-
+```
+```
 make BR2_EXTERNAL=/path/to/buildroot-speedsaver-mangopi speedsaver_defconfig O=output/speedsaver
-
+```
+```
 cd output/speedsaver
-
+```
+```
 make
 ```
 
-If you have a multi-cores machine, you can try passing -j n (where n is the number of cores +1 of your build machine) to the second make invocation to accelerate the build.
+If you have a multi-cores machine, you can try passing -j n (where n is the number of cores +1 of your build machine) to the second make invocation to accelerate the build. For example, for a quad core build machine run make -j5. If debugging of the build process is necessary, run make (without -j n) to make any error messages easier to interpret.
 
-## Flashing ##
+## Flash SD card ##
+
+```
+cd images
+```
+Insert your Micro SD Card and run 
+```
+lsblk
+```
+You can identify your SD card by size compared to your other existing hard drives, e.g. sdX 4G for a 4 Gigabyte SD card. Note CAREFULLY the letter after "sd" corresponding to the SD card you just inserted. In the following example my SD card is designated sdc, because I have existing internal hard drives sda and sdb. Be VERY sure the following command has the correct /dev/sdX for your setup, the risk is you wipe all the data on one of your existing internal drives if you get it wrong.
+```
+sudo dd if=sysimage-nand.img of=/dev/sdc status=progress
+```
+```
+sudo sync
+```
+
+## Flashing onboard SPI NAND ##
 
 Dependency: libusb-1.0-0-dev
 
@@ -90,29 +121,3 @@ run dfu_nand
 ## First boot ##
 
 The first time your board boots, it will take a long while, but this is perfectly normal. Linux has to fix up the filesystem and prepare for boot at the same time. Subsequent reboots should be faster.
-
-## Flash SD card ##
-
-### Required tools ###
-
-To flash an sdcard, you can use [Imager](https://www.raspberrypi.com/software/) (recommended) or use the commandline instructions below.
-
-
-Plug in the sdcard into the sdcard reader and plug into host machine.
-
-Check device is mounted with
-```
-df -h
-```
-
-If it's not mounted, you can mount with
-```
-mount /dev/[sdcard_device] /mnt
-```
-
-Take note of the device the sdcard is mounted under.
-
-Flash the sdcard with 
-```
-sudo dd if=/path/to/buildroot/output/speedsaver/images/sysimage-sdcard.img of=/dev/[sdcard_device] bs=1M
-```
