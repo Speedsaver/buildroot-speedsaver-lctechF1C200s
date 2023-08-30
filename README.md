@@ -4,9 +4,17 @@ This external tree contains the support for the Speedsaver use-case on the Lctec
 
 ## Required tools ##
 
-To use this, you will require the following tools:
+Note if you are new to Buildroot, see prerequisites: https://buildroot.org/downloads/manual/manual.html#requirement-mandatory. Tested with vanilla Lubuntu 22.04.1 LTS, only the following was needed:
+```
+sudo apt install make gcc build-essential libncurses5-dev libssl-dev
+```
+libncurses5-dev is in place of ncurses5
+
+If you wish to flash the onboard spi NAND you will also require the following tools:
 * sunxi-tools built from source (see below)
 * dfu-util
+
+Otherwise, a sysimage-sdcard.img is available in the /images directory after building.
 
 ## How to build ##
 
@@ -23,7 +31,7 @@ cd output/speedsaver
 make
 ```
 
-If you have a multi-cores machine, you can try passing -j to the second make invocation to accelerate the build.
+If you have a multi-cores machine, you can try passing -j n (where n is the number of cores +1 of your build machine) to the second make invocation to accelerate the build.
 
 ## Flashing ##
 
