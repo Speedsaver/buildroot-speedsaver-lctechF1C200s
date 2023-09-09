@@ -33,10 +33,10 @@ tar -zxf buildroot-2023.02.3.tar.gz
 cd buildroot-2023.02.3
 ```
 ```
-for p in /path/to/buildroot-speedsaver-mangopi/buildroot-patches/*.patch; do patch -p1 < $p; done
+for p in /path/to/buildroot-speedsaver-lctechF1C200s/buildroot-patches/*.patch; do patch -p1 < $p; done
 ```
 ```
-make BR2_EXTERNAL=/path/to/buildroot-speedsaver-mangopi speedsaver_defconfig O=output/speedsaver
+make BR2_EXTERNAL=/path/to/buildroot-speedsaver-lctechF1C200s speedsaver_defconfig O=output/speedsaver
 ```
 ```
 cd output/speedsaver
