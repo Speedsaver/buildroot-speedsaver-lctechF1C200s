@@ -1,6 +1,8 @@
 # External Lctech Pi F1C200s buildroot tree for Speedsaver #
 
-This external tree contains the support for the Speedsaver use-case on the Lctech Pi F1C200s development board
+This external tree contains the support for the Speedsaver use-case on the Lctech Pi F1C200s development board.
+
+UART0_RX is on the screw terminal labelled PE0 (connect to T/TX/Transmit of your GNSS module, the blue wire on Speedsaver supplied hardware), UART0_TX is on the screw terminal labelled PE1 (connect to R/RX/Receive of your GNSS module, the green wire on Speedsaver supplied hardware). i2C/Two-Wire connections for the OLED display are labelled SCL (for Serial Clock) and SDA (for Serial Data), and are self explanatory. 5V, 3.3V and 0V (ground/gnd) are available on screw terminals.
 
 ## Required tools ##
 
@@ -18,7 +20,7 @@ If you only require an SD card image, a sysimage-sdcard.img file is created in t
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2023.02.4 at the time of this writing. Tested working with kernel 5.4.254. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
+This external tree will work with the latest buildroot version, which is 2023.02.6 at the time of this writing. Tested working with kernel 5.4.254. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
 
 Open a terminal and run the following commands
 
@@ -29,13 +31,13 @@ git clone https://github.com/Speedsaver/buildroot-speedsaver-lctechF1C200s.git
 cp -R /path/to/maps /path/to/buildroot-speedsaver-lctechF1C200s/board/widora/mangopi/r3/rootfs/usr/share/navit
 ```
 ```
-wget https://buildroot.org/downloads/buildroot-2023.02.4.tar.gz
+wget https://buildroot.org/downloads/buildroot-2023.02.6.tar.gz
 ```
 ```
-tar -zxf buildroot-2023.02.4.tar.gz
+tar -zxf buildroot-2023.02.6.tar.gz
 ```
 ```
-cd buildroot-2023.02.4
+cd buildroot-2023.02.6
 ```
 ```
 for p in /path/to/buildroot-speedsaver-lctechF1C200s/buildroot-patches/*.patch; do patch -p1 < $p; done
