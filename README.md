@@ -20,7 +20,7 @@ If you only require an SD card image, a sysimage-sdcard.img file is created in t
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2023.02.7 at the time of this writing. Tested working with kernel 5.4.254. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
+This external tree will work with the latest buildroot version, which is 2023.02.8 at the time of this writing. Tested working with kernel 5.4.254. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
 
 Open a terminal and run the following commands
 
@@ -31,13 +31,13 @@ git clone https://github.com/Speedsaver/buildroot-speedsaver-lctechF1C200s.git
 cp -R /path/to/maps /path/to/buildroot-speedsaver-lctechF1C200s/board/widora/mangopi/r3/rootfs/usr/share/navit
 ```
 ```
-wget https://buildroot.org/downloads/buildroot-2023.02.7.tar.gz
+wget https://buildroot.org/downloads/buildroot-2023.02.8.tar.gz
 ```
 ```
-tar -zxf buildroot-2023.02.7.tar.gz
+tar -zxf buildroot-2023.02.8.tar.gz
 ```
 ```
-cd buildroot-2023.02.7
+cd buildroot-2023.02.8
 ```
 ```
 for p in /path/to/buildroot-speedsaver-lctechF1C200s/buildroot-patches/*.patch; do patch -p1 < $p; done
@@ -69,6 +69,14 @@ sudo dd if=sysimage-sdcard.img of=/dev/sdc status=progress
 ```
 ```
 sudo sync
+```
+If you wish to flash multiple Micro SD cards simultaneously and more quickly, you may wish to consider using dcfldd instead of dd.
+```
+sudo apt install dcfldd
+````
+The version available from L/Ubuntu repositories at the time of writing is 1.7.1-1. Compiling from source at https://github.com/resurrecting-open-source-projects/dcfldd gives 1.9.1. Usage for 2 Micro SD cards is as follows, append as required for additional cards:
+```
+sudo dcfldd if=sysimage-sdcard.img of=/dev/sdc of=/dev/sdd status=progress
 ```
 
 ## Flashing onboard SPI NAND ##
