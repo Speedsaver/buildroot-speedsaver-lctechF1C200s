@@ -78,6 +78,9 @@ The version available from L/Ubuntu repositories at the time of writing is 1.7.1
 ```
 sudo dcfldd if=sysimage-sdcard.img of=/dev/sdc of=/dev/sdd status=progress
 ```
+```
+sudo sync
+```
 
 ## Flashing onboard SPI NAND ##
 
