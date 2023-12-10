@@ -81,6 +81,10 @@ sudo dcfldd if=sysimage-sdcard.img of=/dev/sdc of=/dev/sdd status=progress
 ```
 sudo sync
 ```
+If you are more comfortable with a GUI, use the cross-platform Etcher burning tool. In Linux, the appimage is portable (nothing gets installed), but you will need to right click the file and check the "Trust this executable" box and also the "Make the file executable" box in Properties > Permissions.
+```
+https://etcher.balena.io/#download-etcher
+```
 
 ## Flashing onboard SPI NAND ##
 
