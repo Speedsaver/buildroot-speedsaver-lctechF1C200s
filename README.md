@@ -20,7 +20,7 @@ If you only require an SD card image, a sysimage-sdcard.img file is created in t
 
 ## How to build ##
 
-This external tree will work with the latest buildroot version, which is 2024.02.1 at the time of this writing. Tested working with kernel 5.4.273. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
+This external tree will work with the latest buildroot version, which is 2024.02.2 at the time of this writing. Tested working with kernel 5.4.273. Note this repository does not provide any maps, but you can download prebuilt Navit maps (.bin) for your country at http://maps3.navit-project.org/. Other sources are signposted in the readme for our map conversion repository at https://github.com/Speedsaver/ogr2osm-translations.
 
 Open a terminal and run the following commands
 
@@ -31,13 +31,13 @@ git clone https://github.com/Speedsaver/buildroot-speedsaver-lctechF1C200s.git
 cp -R /path/to/maps /path/to/buildroot-speedsaver-lctechF1C200s/board/widora/mangopi/r3/rootfs/usr/share/navit
 ```
 ```
-wget https://buildroot.org/downloads/buildroot-2024.02.1.tar.gz
+wget https://buildroot.org/downloads/buildroot-2024.02.2.tar.gz
 ```
 ```
-tar -zxf buildroot-2024.02.1.tar.gz
+tar -zxf buildroot-2024.02.2.tar.gz
 ```
 ```
-cd buildroot-2024.02.1
+cd buildroot-2024.02.2
 ```
 ```
 for p in /path/to/buildroot-speedsaver-lctechF1C200s/buildroot-patches/*.patch; do patch -p1 < $p; done
