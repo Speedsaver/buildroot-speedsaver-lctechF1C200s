@@ -8,9 +8,9 @@ UART0_RX is on the screw terminal labelled PE0 (connect to T/TX/Transmit of your
 
 Note if you are new to Buildroot, see prerequisites: https://buildroot.org/downloads/manual/manual.html#requirement-mandatory. Tested with vanilla Lubuntu 22.04.1 LTS, only the following was needed:
 ```
-sudo apt install make gcc build-essential libncurses5-dev libssl-dev
+sudo apt install make gcc build-essential libncurses-dev libssl-dev
 ```
-Note libncurses5-dev is in place of ncurses5
+Note libncurses-dev is in place of ncurses5
 
 If you wish to flash the onboard spi NAND you will also require the following tools:
 * sunxi-tools built from source (see below)
