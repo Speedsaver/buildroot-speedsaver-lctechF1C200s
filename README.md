@@ -6,9 +6,9 @@ UART0_RX is on the screw terminal labelled PE0 (connect to T/TX/Transmit of your
 
 ## Required tools ##
 
-Note if you are new to Buildroot, see prerequisites: https://buildroot.org/downloads/manual/manual.html#requirement-mandatory. Tested with vanilla Lubuntu 22.04.1 LTS, only the following was needed:
+Note if you are new to Buildroot, see prerequisites: https://buildroot.org/downloads/manual/manual.html#requirement-mandatory. Tested with vanilla Lubuntu 24.04.3 LTS (Noble Numbat), only the following was needed:
 ```
-sudo apt install make gcc build-essential libncurses-dev libssl-dev
+sudo apt install gnu-which make gcc build-essential libncurses-dev libssl-dev original-awk
 ```
 Note libncurses-dev is in place of ncurses5
 
