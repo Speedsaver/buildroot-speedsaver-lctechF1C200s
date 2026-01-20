@@ -28,7 +28,7 @@ Open a terminal and run the following commands
 git clone https://github.com/Speedsaver/buildroot-speedsaver-lctechF1C200s.git
 ```
 ```
-cp -R /path/to/maps /path/to/buildroot-speedsaver-lctechF1C200s/board/widora/mangopi/r3/rootfs/usr/share/navit
+cp -R /path/to/maps/buildroot-speedsaver-lctechF1C200s/board/widora/mangopi/r3/rootfs/usr/share/navit
 ```
 ```
 wget https://buildroot.org/downloads/buildroot-2024.02.2.tar.gz
