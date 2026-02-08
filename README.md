@@ -63,7 +63,7 @@ Insert your Micro SD Card and run
 ```
 lsblk
 ```
-You can identify your SD card by size compared to your other existing hard drives, e.g. sdX 4G for a 4 Gigabyte SD card. Note CAREFULLY the letter after "sd" corresponding to the SD card you just inserted. In the following example my SD card is designated sdc, because I have existing internal hard drives sda and sdb. Be VERY sure the following command has the correct /dev/sdX for your setup, the risk is you wipe all the data on one of your existing internal drives if you get it wrong.
+You can identify your SD card by size compared to your other existing hard drives, e.g. sdX 4G for a 4 Gigabyte SD card. Note CAREFULLY the letter after "sd" corresponding to the SD card you just inserted. In the following example my SD card is designated sdc, because I have existing internal hard drives sda and sdb. Be VERY sure the following command has the correct /dev/sdX for your setup, the risk is you wipe all the data on one of your existing internal drives if you get it wrong. Note for some environments, particularly a laptop or PC with a built-in SD Card reader, the Micro SD will present as mmcblk0 or similar.
 ```
 sudo dd if=sysimage-sdcard.img of=/dev/sdc status=progress
 ```
