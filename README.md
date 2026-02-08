@@ -74,7 +74,7 @@ If you wish to flash multiple Micro SD cards simultaneously and more quickly, yo
 ```
 sudo apt install dcfldd
 ````
-The version available from L/Ubuntu repositories at the time of writing is 1.7.1-1. Compiling from source at https://github.com/resurrecting-open-source-projects/dcfldd gives 1.9.1. Usage for 2 Micro SD cards is as follows, append as required for additional cards:
+The version available from L/Ubuntu repositories at the time of writing is 1.9.1-1ubuntu2. Compiling from source at https://github.com/resurrecting-open-source-projects/dcfldd gives 1.9.3. Usage for 2 Micro SD cards is as follows, append as required for additional cards:
 ```
 sudo dcfldd if=sysimage-sdcard.img of=/dev/sdc of=/dev/sdd status=progress
 ```
